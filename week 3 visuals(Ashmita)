@@ -1,1 +1,111 @@
 
+# Time series visuals of COVID19 
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+import seaborn as sns
+
+import scipy, pylab
+
+df=pd.read_csv(r'C:\Users\91952\Downloads\time_series_covid19_confirmed.xlsx - time_series_covid19_confirmed.csv')
+print(df)
+
+df_total=df.groupby("Lat")[["3/26/2020"]].sum()
+print(df_total)
+
+df_sorted=df_total.sort_values("Lat",ascending=True)
+print(df_sorted)
+
+ax1=plt.subplot(111)
+plt.xlim([-90,90])
+plt.ylim([0,100000])
+plt.yticks(np.arange(0,100000,20000))
+plt.xticks(np.arange(-90, 90,10))
+plt.title("Confirmed case around the world in a single day")
+plt.xlabel("Lattitude")
+plt.ylabel("3/26/2020")
+ax=plt.plot(df_sorted)
+
+
+df_total2=df.groupby("Long")[["3/26/2020"]].sum()
+print(df_total2)
+df_sorted2=df_total2.sort_values("Long",ascending=True)
+print(df_sorted2)
+plt.axes()
+plt.xlim([-180,180])
+plt.ylim([0,100000])
+plt.yticks(np.arange(0,100000,20000))
+plt.xticks(np.arange(-180, 180,60))
+plt.title("Confirmed case around the world in a single day")
+plt.xlabel("Longitude")
+plt.ylabel("3/26/2020")
+plt.plot(df_sorted2,color='red')
+
+df2=pd.read_csv(r'C:\Users\91952\Downloads\time_series_covid19_deaths.xlsx - time_series_covid19_deaths.csv')
+print(df2)
+
+df_totaldeaths=df2.groupby("Lat")[["3/26/2020"]].sum()
+print(df_totaldeaths)
+
+df_sorteddeaths=df_totaldeaths.sort_values("Lat",ascending=True)
+print(df_sorteddeaths)
+
+plt.axes()
+plt.xlim([-90,90])
+plt.ylim([0,100000])
+plt.yticks(np.arange(0,100000,20000))
+plt.xticks(np.arange(-90, 90,10))
+plt.title("Deaths around the world in a single day")
+plt.xlabel("Lattitude")
+plt.ylabel("3/26/2020")
+plt.plot(df_sorteddeaths,color='red')
+
+df_totaldeaths2=df2.groupby("Long")[["3/26/2020"]].sum()
+print(df_totaldeaths2)
+df_sorteddeaths2=df_totaldeaths2.sort_values("Long",ascending=True)
+print(df_sorteddeaths2)
+plt.axes()
+plt.xlim([-180,180])
+plt.ylim([0,100000])
+plt.yticks(np.arange(0,100000,20000))
+plt.xticks(np.arange(-180, 180,60))
+plt.title("Deaths around the world in a single day")
+plt.xlabel("Longitude")
+plt.ylabel("3/26/2020")
+plt.plot(df_sorteddeaths2,color='red')
+
+df3=pd.read_csv(r'C:\Users\91952\Downloads\time_series_covid19_recovered.xlsx - time_series_covid19_recovered.csv')
+print(df3)
+
+
+df_total3=df3.groupby("Lat")[["3/26/2020"]].sum()
+print(df_total3)
+
+df_sorted3=df_total3.sort_values("Lat",ascending=True)
+print(df_sorted3)
+
+plt.axes()
+plt.xlim([-90,90])
+plt.ylim([0,100000])
+plt.yticks(np.arange(0,100000,20000))
+plt.xticks(np.arange(-90, 90,10))
+plt.title("Recovered around the world in a single day")
+plt.xlabel("Lattitude")
+plt.ylabel("3/26/2020")
+plt.plot(df_sorted3,color='green')
+
+df_total4=df3.groupby("Long")[["3/26/2020"]].sum()
+print(df_total4)
+df_sorted4=df_total4.sort_values("Long",ascending=True)
+print(df_sorted4)
+plt.axes()
+plt.xlim([-180,180])
+plt.ylim([0,100000])
+plt.yticks(np.arange(0,100000,20000))
+plt.xticks(np.arange(-180, 180,60))
+plt.title("Recovered case around the world in a single day")
+plt.xlabel("Longitude")
+plt.ylabel("3/26/2020")
+plt.plot(df_sorted4,color='green')
+
